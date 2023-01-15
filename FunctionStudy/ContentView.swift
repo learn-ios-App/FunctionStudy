@@ -1,21 +1,36 @@
-//
-//  ContentView.swift
-//  FunctionStudy
-//
-//  Created by 渡邊魁優 on 2023/01/15.
-//
 
 import SwiftUI
 
 struct ContentView: View {
+    @State private var textList = ["Hello"]
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            List {
+                ForEach(textList, id: \.self) { index in
+                    Text(index)
+                }
+            }
+            ButtonView(hello: Hello)
         }
-        .padding()
+    }
+    func Hello() {
+        let greeting = "Hello"
+        self.textList.insert(greeting, at: 0)
+    }
+}
+
+struct ButtonView: View {
+    let hello: () -> Void
+    var body: some View {
+        VStack {
+            Button(action: {
+                hello()
+            }) {
+                Text("挨拶をする")
+            }
+            .padding()
+        }
     }
 }
 
