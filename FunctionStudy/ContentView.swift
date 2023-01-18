@@ -2,8 +2,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var textList = ["Hello"]
-    
+    @State var textList = ["Hello"]
     var body: some View {
         VStack {
             List {
@@ -14,23 +13,10 @@ struct ContentView: View {
             ButtonView(hello: Hello)
         }
     }
+    //下の関数を別のビューで動かしたい
     func Hello() {
         let greeting = "Hello"
         self.textList.insert(greeting, at: 0)
-    }
-}
-
-struct ButtonView: View {
-    let hello: () -> Void
-    var body: some View {
-        VStack {
-            Button(action: {
-                hello()
-            }) {
-                Text("挨拶をする")
-            }
-            .padding()
-        }
     }
 }
 
